@@ -18,3 +18,4 @@ sudo -u james git config --global user.email "smart.ice9799@fastmail.com"
 sudo -u james git config --global pull.rebase false
 
 firewall-cmd --permanent --add-service=http
+firewall-cmd --reload
