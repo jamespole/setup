@@ -30,5 +30,7 @@ ${install} mailname /etc
 ${install} update-exim4.conf.conf /etc/exim4
 systemctl restart exim4.service
 
+${install} 99local /etc/apt/apt.conf.d
+
 firewall-cmd --permanent --add-service=http
 firewall-cmd --reload
