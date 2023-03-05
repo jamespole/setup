@@ -24,9 +24,11 @@ sudo -u james git config --global user.name "James Anderson-Pole"
 sudo -u james git config --global user.email "smart.ice9799@fastmail.com"
 sudo -u james git config --global pull.rebase false
 
-install --backup --compare --verbose --owner=root --group=root --mode=0644 \
-    update-exim4.conf.conf \
-    /etc/exim4/update-exim4.conf.conf
+install='install --backup --compare --verbose --owner=root --group=root --mode=0644'
+
+${install} mailname /etc
+${install} update-exim4.conf.conf /etc/exim4
+systemctl restart exim4.service
 
 firewall-cmd --permanent --add-service=http
 firewall-cmd --reload
