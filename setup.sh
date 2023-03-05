@@ -9,6 +9,7 @@ apt-get install \
     apache2 \
     firewalld \
     shellcheck \
+    unattended-upgrades \
     vim
 
 apt-get autoremove
