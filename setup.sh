@@ -12,6 +12,7 @@ apt-get upgrade
 apt-get install \
     apache2 \
     composer \
+    exim4-daemon-heavy \
     firewalld \
     shellcheck \
     unattended-upgrades \
