@@ -7,6 +7,7 @@ apt-get upgrade
 
 apt-get install \
     apache2 \
+    composer \
     firewalld \
     shellcheck \
     unattended-upgrades \
