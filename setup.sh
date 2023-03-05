@@ -32,7 +32,8 @@ sudo -u james git config --global user.email "smart.ice9799@fastmail.com"
 sudo -u james git config --global pull.rebase false
 
 # openssh-client config
-sudo -u james ssh-keygen -f /home/james/.ssh/id_ed25519 -t ed25519
+key_path='/home/james/.ssh/id_ed25519'
+[ ! -f ${key_path} ] && sudo -u james ssh-keygen -f ${key_path} -t ed25519
 sudo -u james wget -O "/home/james/.ssh/authorized_keys" -- "https://github.com/jamespole.keys"
 
 # unattended-upgrades config
