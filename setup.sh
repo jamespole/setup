@@ -20,17 +20,21 @@ apt-get install \
 
 apt-get autoremove
 
+install='install --backup --compare --verbose --owner=root --group=root --mode=0644'
+
+# exim4 config
+${install} mailname /etc
+${install} update-exim4.conf.conf /etc/exim4
+
+# git config
 sudo -u james git config --global user.name "James Anderson-Pole"
 sudo -u james git config --global user.email "smart.ice9799@fastmail.com"
 sudo -u james git config --global pull.rebase false
 
-install='install --backup --compare --verbose --owner=root --group=root --mode=0644'
-
-${install} mailname /etc
-${install} update-exim4.conf.conf /etc/exim4
-systemctl restart exim4.service
-
+# unattended-upgrades config
 ${install} 99local /etc/apt/apt.conf.d
+
+systemctl restart exim4.service
 
 firewall-cmd --permanent --add-service=http
 firewall-cmd --reload
