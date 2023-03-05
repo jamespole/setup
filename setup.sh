@@ -1,6 +1,8 @@
 #!/bin/sh
 
-set -x
+set -ex
+
+[ "$USER" != 'root' ] && echo 'User is not root!' && exit 1
 
 apt-get update
 apt-get upgrade
