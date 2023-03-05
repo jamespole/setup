@@ -1,1 +1,2 @@
 Unattended-Upgrade::Mail "james";
+Unattended-Upgrade::MailReport "always";
