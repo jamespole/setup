@@ -2,9 +2,11 @@
 
 set -ex
 
+expected_hostname='pluto'
+
 [ "$USER" != 'root' ] && echo 'User is not root!' && exit 1
 
-[ "$(hostname)" != 'pluto' ] && echo 'Hostname is not neptune!' && exit 1
+[ "$(hostname)" != "${expected_hostname}" ] && echo "Hostname is not ${expected_hostname}!" && exit 1
 
 apt-get update
 apt-get upgrade
