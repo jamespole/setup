@@ -11,7 +11,9 @@ apt-get upgrade
 
 apt-get install \
     apache2 \
+    borgbackup \
     composer \
+    deborphan \
     exim4-daemon-heavy \
     firewalld \
     shellcheck \
