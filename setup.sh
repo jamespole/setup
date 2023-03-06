@@ -15,7 +15,9 @@ apt-get install \
     deborphan \
     screen \
     shellcheck \
-    vim
+    subliminal \
+    vim \
+    youtube-dl
 
 install='install --backup --compare --verbose --owner=root --group=root --mode=0644'
 
