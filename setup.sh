@@ -24,9 +24,15 @@ apt-get autoremove
 
 install='install --backup --compare --verbose --owner=root --group=root --mode=0644'
 
+# apache2 config
+a2enmod userdir
+
 # exim4 config
 ${install} mailname /etc
 ${install} update-exim4.conf.conf /etc/exim4
+
+# firewalld config
+firewall-cmd --permanent --add-service=http
 
 # git config
 sudo -u james git config --global user.name "James Anderson-Pole"
@@ -41,7 +47,8 @@ sudo -u james wget -O "/home/james/.ssh/authorized_keys" -- "https://github.com/
 # unattended-upgrades config
 ${install} 99local /etc/apt/apt.conf.d
 
-systemctl restart exim4.service
+# restart all services except firewalld
+systemctl restart apache2.service exim4.service
 
-firewall-cmd --permanent --add-service=http
-firewall-cmd --reload
+# restart firewalld last
+systemctl restart firewalld.service
