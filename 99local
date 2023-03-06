@@ -1,2 +1,3 @@
+Unattended-Upgrade::Automatic-Reboot "true";
 Unattended-Upgrade::Mail "james";
 Unattended-Upgrade::MailReport "always";
