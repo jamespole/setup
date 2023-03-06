@@ -26,15 +26,14 @@ install='install --backup --compare --verbose --owner=root --group=root --mode=0
 # apache2 config
 apt-get install apache2
 a2enmod userdir
+apache2ctl configtest
+systemctl restart apache2.service
 
 # exim4 config
 apt-get install exim4-daemon-heavy
 ${install} mailname /etc
 ${install} update-exim4.conf.conf /etc/exim4
-
-# firewalld config
-apt-get install firewalld
-firewall-cmd --permanent --add-service=http
+systemctl restart exim4.service
 
 # git config
 apt-get install git
@@ -54,8 +53,7 @@ ${install} 99local /etc/apt/apt.conf.d
 
 apt-get autoremove
 
-# restart all services except firewalld
-systemctl restart apache2.service exim4.service
-
-# restart firewalld last
+# [last] firewalld config
+apt-get install firewalld
+firewall-cmd --permanent --add-service=http
 systemctl restart firewalld.service
