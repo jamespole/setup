@@ -8,6 +8,8 @@ expected_hostname='pluto'
 
 [ "$(hostname)" != "${expected_hostname}" ] && echo "Hostname is not ${expected_hostname}!" && exit 1
 
+timedatectl set-timezone 'Pacific/Auckland'
+
 apt-get update
 apt-get upgrade
 
@@ -37,15 +39,15 @@ systemctl restart exim4.service
 
 # git config
 apt-get install git
-sudo -u james git config --global user.name "James Anderson-Pole"
-sudo -u james git config --global user.email "smart.ice9799@fastmail.com"
+sudo -u james git config --global user.name 'James Anderson-Pole'
+sudo -u james git config --global user.email 'smart.ice9799@fastmail.com'
 sudo -u james git config --global pull.rebase false
 
 # openssh-client config
 apt-get install openssh-client
 key_path='/home/james/.ssh/id_ed25519'
 [ ! -f ${key_path} ] && sudo -u james ssh-keygen -f ${key_path} -t ed25519
-sudo -u james wget -O "/home/james/.ssh/authorized_keys" -- "https://github.com/jamespole.keys"
+sudo -u james wget -O '/home/james/.ssh/authorized_keys' -- 'https://github.com/jamespole.keys'
 
 # unattended-upgrades config
 apt-get install unattended-upgrades
