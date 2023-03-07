@@ -58,6 +58,7 @@ apt-get install openssh-server ssh-audit
 ${install} ssh-audit_hardening.conf /etc/ssh/sshd_config.d/
 sshd -t
 systemctl restart ssh.service
+ssh-audit --level=warn localhost
 
 # unattended-upgrades config
 apt-get install unattended-upgrades
