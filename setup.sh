@@ -31,6 +31,10 @@ a2enmod userdir
 apache2ctl configtest
 systemctl restart apache2.service
 
+# bash config
+apt-get install bash bash-completion
+${install} --owner=james --group=james bash_aliases /home/james/.bash_aliases
+
 # exim4 config
 apt-get install exim4-daemon-heavy
 ${install} mailname /etc
