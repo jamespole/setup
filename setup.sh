@@ -53,6 +53,10 @@ key_path='/home/james/.ssh/id_ed25519'
 [ ! -f ${key_path} ] && sudo -u james ssh-keygen -f ${key_path} -t ed25519
 sudo -u james wget -O '/home/james/.ssh/authorized_keys' -- 'https://github.com/jamespole.keys'
 
+# openssh-server config
+apt-get install openssh-server ssh-audit
+systemctl restart ssh.service
+
 # unattended-upgrades config
 apt-get install unattended-upgrades
 ${install} 99local /etc/apt/apt.conf.d
