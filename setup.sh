@@ -17,7 +17,6 @@ apt-get install \
     borgbackup \
     composer \
     deborphan \
-    fail2ban \
     screen \
     shellcheck \
     subliminal \
@@ -58,8 +57,14 @@ sudo -u james wget -O '/home/james/.ssh/authorized_keys' -- 'https://github.com/
 apt-get install openssh-server ssh-audit
 ${install} ssh-audit_hardening.conf /etc/ssh/sshd_config.d/
 sshd -t
-systemctl restart ssh.service
+systemctl restart 'ssh.service'
 ssh-audit --level=warn localhost
+
+# [needs openssh-server]
+# fail2ban config
+apt-get install fail2ban
+${install} default.local /etc/fail2ban/jail.d/
+systemctl restart 'fail2ban.service'
 
 # unattended-upgrades config
 apt-get install unattended-upgrades
@@ -67,7 +72,8 @@ ${install} 99local /etc/apt/apt.conf.d
 
 apt-get autoremove
 
-# [last] firewalld config
+# [last]
+# firewalld config
 apt-get install firewalld
 firewall-cmd --permanent --add-service=http
-systemctl restart firewalld.service
+systemctl restart 'firewalld.service'
