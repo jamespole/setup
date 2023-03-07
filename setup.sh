@@ -17,6 +17,7 @@ apt-get install \
     borgbackup \
     composer \
     deborphan \
+    fail2ban \
     screen \
     shellcheck \
     subliminal \
