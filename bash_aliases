@@ -1,2 +1,2 @@
-alias ls='ls --all --classify --human-readable'
+alias ls='ls --all --classify --color --human-readable'
 alias more='less'
