@@ -4,7 +4,7 @@ set -ex
 
 expected_hostname='pluto'
 
-[ "$USER" != 'root' ] && echo 'User is not root!' && exit 1
+[ "${USER}" != 'root' ] && echo 'User is not root!' && exit 1
 
 [ "$(hostname)" != "${expected_hostname}" ] && echo "Hostname is not ${expected_hostname}!" && exit 1
 
@@ -59,7 +59,7 @@ systemctl restart NetworkManager.service
 # openssh-client config
 apt-get install openssh-client
 key_path='/home/james/.ssh/id_ed25519'
-[ ! -f ${key_path} ] && sudo -u james ssh-keygen -f ${key_path} -t ed25519
+[ ! -f "${key_path}" ] && sudo -u james ssh-keygen -f "${key_path}" -t ed25519
 sudo -u james wget -O '/home/james/.ssh/authorized_keys' -- 'https://github.com/jamespole.keys'
 
 # openssh-server config
