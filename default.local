@@ -1,3 +1,6 @@
 [DEFAULT]
 banaction = firewallcmd-ipset
+bantime = 12h
+findtime = 1d
 ignoreip = 127.0.0.1/8 ::1 101.98.0.0/16 2404:4400::/28
+maxretry = 5
