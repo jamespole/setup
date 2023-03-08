@@ -14,7 +14,6 @@ apt-get update
 apt-get upgrade
 
 apt-get install \
-    borgbackup \
     composer \
     deborphan \
     screen \
@@ -33,6 +32,10 @@ systemctl restart apache2.service
 # bash config
 apt-get install bash bash-completion
 ${install} --owner=james --group=james bash_aliases /home/james/.bash_aliases
+
+# bash config
+apt-get install borgbackup
+${install} --owner=james --group=james borg.sh /home/james/
 
 # exim4 config
 apt-get install exim4-daemon-heavy
