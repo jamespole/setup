@@ -33,9 +33,9 @@ systemctl restart apache2.service
 apt-get install bash bash-completion
 ${install} --owner=james --group=james bash_aliases /home/james/.bash_aliases
 
-# bash config
+# borgbackup config
 apt-get install borgbackup
-${install} --owner=james --group=james borg.sh /home/james/
+${install} --owner=james --group=james --mode=0755 borg.sh /home/james/
 
 # exim4 config
 apt-get install exim4-daemon-heavy
