@@ -71,6 +71,10 @@ systemctl restart 'fail2ban.service'
 apt-get install unattended-upgrades
 ${install} 99local /etc/apt/apt.conf.d
 
+# vim config
+apt-get install vim
+${install} --owner=james --group=james vimrc /home/james/.vimrc
+
 apt-get autoremove
 
 # [last]
