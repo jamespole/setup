@@ -16,6 +16,7 @@ apt-get upgrade
 apt-get install \
     composer \
     deborphan \
+    lynis \
     screen \
     shellcheck \
     subliminal \
