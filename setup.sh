@@ -55,6 +55,7 @@ sudo -u james wget -O '/home/james/.ssh/authorized_keys' -- 'https://github.com/
 
 # openssh-server config
 apt-get install openssh-server ssh-audit
+${install} local.conf /etc/ssh/sshd_config.d/
 ${install} ssh-audit_hardening.conf /etc/ssh/sshd_config.d/
 sshd -t
 systemctl restart 'ssh.service'
