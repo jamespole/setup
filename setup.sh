@@ -20,7 +20,6 @@ apt-get install \
     screen \
     shellcheck \
     subliminal \
-    vim \
     youtube-dl
 
 install='install --backup --compare --verbose --owner=root --group=root --mode=0644'
