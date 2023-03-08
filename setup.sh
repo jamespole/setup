@@ -49,6 +49,11 @@ sudo -u james git config --global user.name 'James Anderson-Pole'
 sudo -u james git config --global user.email 'smart.ice9799@fastmail.com'
 sudo -u james git config --global pull.rebase false
 
+# network-manager config
+apt-get install network-manager
+systemctl enable NetworkManager.service
+systemctl restart NetworkManager.service
+
 # openssh-client config
 apt-get install openssh-client
 key_path='/home/james/.ssh/id_ed25519'
