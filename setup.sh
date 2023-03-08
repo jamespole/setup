@@ -77,6 +77,9 @@ apt-get install fail2ban
 ${install} default.local /etc/fail2ban/jail.d/
 systemctl restart 'fail2ban.service'
 
+# qemu-guest-additions
+[ "$(systemd-detect-virt)" = 'kvm' ] && apt-get install qemu-guest-additions
+
 # unattended-upgrades config
 apt-get install unattended-upgrades
 ${install} 99local /etc/apt/apt.conf.d
