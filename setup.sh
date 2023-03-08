@@ -51,7 +51,7 @@ sudo -u james git config --global pull.rebase false
 
 # network-manager config
 apt-get install network-manager
-${install} --mode=0600 ORBI81.nmconnection /etc/NetworkManager/system-connections/
+${install} --mode=0600 ORBI82.nmconnection /etc/NetworkManager/system-connections/
 systemctl enable NetworkManager.service
 systemctl restart NetworkManager.service
 
