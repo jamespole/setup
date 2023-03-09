@@ -4,9 +4,11 @@ set -ex
 
 expected_hostname='pluto'
 
-[ "${USER}" != 'root' ] && echo 'User is not root!' && exit 1
+[ "${USER}" != 'root' ] && printf 'User is not root!' && exit 1
 
-[ "$(hostname)" != "${expected_hostname}" ] && echo "Hostname is not ${expected_hostname}!" && exit 1
+[ "$(hostname)" != "${expected_hostname}" ] && printf "Hostname is not ${expected_hostname}!" && exit 1
+
+[ ! -f '/etc/debian_version' ] && printf 'System is not Debian!' && exit 1
 
 timedatectl set-timezone 'Pacific/Auckland'
 
