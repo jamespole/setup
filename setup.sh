@@ -6,7 +6,7 @@ expected_hostname='pluto'
 
 [ "${USER}" != 'root' ] && printf 'User is not root!' && exit 1
 
-[ "$(hostname)" != "${expected_hostname}" ] && printf "Hostname is not ${expected_hostname}!" && exit 1
+[ "$(hostname)" != "${expected_hostname}" ] && printf 'Hostname is not %s!' "${expected_hostname}" && exit 1
 
 [ ! -f '/etc/debian_version' ] && printf 'System is not Debian!' && exit 1
 
