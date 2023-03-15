@@ -4,7 +4,7 @@ update:
 	git pull
 
 check:
-	shellcheck setup.sh
+	shellcheck -o all setup.sh
 
 setup:
 	sudo bash setup.sh
