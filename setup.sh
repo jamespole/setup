@@ -29,7 +29,6 @@ install='install --backup --compare --verbose --owner=root --group=root --mode=0
 apt-get install apache2 libapache2-mod-php
 a2enmod userdir
 apache2ctl configtest
-systemctl restart apache2.service
 
 apt-get install bash bash-completion
 ${install} --owner=james --group=james bash_aliases /home/james/.bash_aliases
@@ -43,7 +42,6 @@ ${install} --owner=james --group=james --mode=0755 borg.sh /home/james/
 apt-get install exim4-daemon-heavy
 ${install} mailname /etc
 ${install} update-exim4.conf.conf /etc/exim4
-systemctl restart exim4.service
 
 # git config
 apt-get install git
@@ -56,7 +54,6 @@ apt-get install network-manager
 ${install} --mode=0600 ORBI82.nmconnection /etc/NetworkManager/system-connections/
 ${install} --mode=0600 Prodigi.nmconnection /etc/NetworkManager/system-connections/
 systemctl enable NetworkManager.service
-systemctl restart NetworkManager.service
 
 # openssh-client config
 apt-get install openssh-client
@@ -69,14 +66,11 @@ apt-get install openssh-server ssh-audit
 ${install} local.conf /etc/ssh/sshd_config.d/
 ${install} ssh-audit_hardening.conf /etc/ssh/sshd_config.d/
 sshd -t
-systemctl restart 'ssh.service'
-ssh-audit --level=warn localhost
 
 # [needs openssh-server]
 # fail2ban config
 apt-get install fail2ban
 ${install} default.local /etc/fail2ban/jail.d/
-systemctl restart 'fail2ban.service'
 
 [ "$(systemd-detect-virt)" = 'kvm' ] && apt-get install qemu-guest-additions
 
@@ -87,12 +81,15 @@ ${install} 99local /etc/apt/apt.conf.d
 apt-get install vim
 ${install} --owner=james --group=james vimrc /home/james/.vimrc
 
-apt-get autoremove
-
 # [last]
 # firewalld config
 apt-get install firewalld
 firewall-cmd --permanent --add-service=http
-systemctl restart 'firewalld.service'
+
+apt-get autoremove
 
 [ -f /var/run/reboot-required ] && shutdown -r now && exit
+
+systemctl restart 'NetworkManager.service' 'ssh.service' 'exim4.service' 'apache2.service' 'fail2ban.service' 'firewalld.service'
+
+ssh-audit --level=warn localhost
