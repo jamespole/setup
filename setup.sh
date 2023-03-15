@@ -26,15 +26,15 @@ apt-get install \
 
 install='install --backup --compare --verbose --owner=root --group=root --mode=0644'
 
-# apache2 config
 apt-get install apache2 libapache2-mod-php
 a2enmod userdir
 apache2ctl configtest
 systemctl restart apache2.service
 
-# bash config
 apt-get install bash bash-completion
 ${install} --owner=james --group=james bash_aliases /home/james/.bash_aliases
+
+apt-get install bind9
 
 # borgbackup config
 apt-get install borgbackup
