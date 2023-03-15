@@ -7,4 +7,4 @@ check:
 	shellcheck setup.sh
 
 setup:
-	sudo sh setup.sh
+	sudo bash setup.sh
