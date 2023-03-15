@@ -21,6 +21,7 @@ apt-get install \
     deborphan \
     lynis \
     mtr \
+    samba \
     screen \
     shellcheck \
     subliminal \
