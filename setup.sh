@@ -17,6 +17,7 @@ apt-get upgrade
 
 apt-get install \
     composer \
+    exim4-daemon-heavy \
     deborphan \
     lynis \
     mtr \
@@ -39,9 +40,8 @@ apt-get install bind9
 apt-get install borgbackup
 ${install} --owner=james --group=james --mode=0755 borg.sh /home/james/
 
-apt-get install exim4-daemon-heavy
-${install} mailname /etc
-${install} update-exim4.conf.conf /etc/exim4
+echo 'pole.net.nz' > /etc/mailname
+[ -d /etc/exim4 ] && ${install} update-exim4.conf.conf /etc/exim4
 
 apt-get install git
 sudo -u james git config --global user.name 'James Anderson-Pole'
