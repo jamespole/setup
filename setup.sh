@@ -36,7 +36,6 @@ ${install} --owner=james --group=james bash_aliases /home/james/.bash_aliases
 
 apt-get install bind9
 
-# borgbackup config
 apt-get install borgbackup
 ${install} --owner=james --group=james --mode=0755 borg.sh /home/james/
 
@@ -79,10 +78,8 @@ apt-get install fail2ban
 ${install} default.local /etc/fail2ban/jail.d/
 systemctl restart 'fail2ban.service'
 
-# qemu-guest-additions
 [ "$(systemd-detect-virt)" = 'kvm' ] && apt-get install qemu-guest-additions
 
-# unattended-upgrades config
 apt-get install unattended-upgrades
 ${install} 99local /etc/apt/apt.conf.d
 
@@ -97,3 +94,5 @@ apt-get autoremove
 apt-get install firewalld
 firewall-cmd --permanent --add-service=http
 systemctl restart 'firewalld.service'
+
+[ -f /var/run/reboot-required ] && shutdown -r now && exit
