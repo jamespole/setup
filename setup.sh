@@ -39,19 +39,20 @@ apt-get install bind9
 apt-get install borgbackup
 ${install} --owner=james --group=james --mode=0755 borg.sh /home/james/
 
-# exim4 config
 apt-get install exim4-daemon-heavy
 ${install} mailname /etc
 ${install} update-exim4.conf.conf /etc/exim4
 
-# git config
 apt-get install git
 sudo -u james git config --global user.name 'James Anderson-Pole'
 sudo -u james git config --global user.email 'smart.ice9799@fastmail.com'
 sudo -u james git config --global pull.rebase false
 
-# network-manager config
 apt-get install network-manager
+cat << EOF > /etc/network/interfaces
+auto lo
+iface lo inet loopback
+EOF
 ${install} --mode=0600 ORBI82.nmconnection /etc/NetworkManager/system-connections/
 ${install} --mode=0600 Prodigi.nmconnection /etc/NetworkManager/system-connections/
 systemctl enable NetworkManager.service
@@ -93,6 +94,6 @@ apt-get autoremove
 
 [ -f /var/run/reboot-required ] && shutdown -r now && exit
 
-systemctl restart 'NetworkManager.service' 'ssh.service' 'exim4.service' 'apache2.service' 'fail2ban.service' 'firewalld.service'
+systemctl restart 'networking.service' 'NetworkManager.service' 'ssh.service' 'exim4.service' 'apache2.service' 'fail2ban.service' 'firewalld.service'
 
 ssh-audit --level=warn localhost
