@@ -19,6 +19,7 @@ apt-get install \
     composer \
     deborphan \
     lynis \
+    mtr \
     screen \
     shellcheck \
     subliminal \
@@ -84,7 +85,9 @@ ${install} --owner=james --group=james vimrc /home/james/.vimrc
 # [last]
 # firewalld config
 apt-get install firewalld
+firewall-cmd --permanent --add-service=dns
 firewall-cmd --permanent --add-service=http
+firewall-cmd --permanent --add-service=https
 
 apt-get autoremove
 
