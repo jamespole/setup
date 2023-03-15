@@ -86,9 +86,7 @@ apt-get install vim
 ${install} --owner=james --group=james vimrc /home/james/.vimrc
 
 apt-get install firewalld
-firewall-cmd --permanent --add-service=dns
-firewall-cmd --permanent --add-service=http
-firewall-cmd --permanent --add-service=https
+firewall-cmd --permanent --add-service={dns,http,https}
 
 apt-get autoremove
 
