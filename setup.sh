@@ -69,22 +69,22 @@ ${install} local.conf /etc/ssh/sshd_config.d/
 ${install} ssh-audit_hardening.conf /etc/ssh/sshd_config.d/
 sshd -t
 
-# [needs openssh-server]
-# fail2ban config
 apt-get install fail2ban
 ${install} default.local /etc/fail2ban/jail.d/
 
 [ "$(systemd-detect-virt)" = 'kvm' ] && apt-get install qemu-guest-additions
 
 apt-get install unattended-upgrades
-${install} 99local /etc/apt/apt.conf.d
+cat << EOF > /etc/apt/apt.conf.d/99local
+Unattended-Upgrade::Automatic-Reboot "true";
+Unattended-Upgrade::Mail "james@pole.net.nz";
+Unattended-Upgrade::MailReport "always";
+EOF
 
 # vim config
 apt-get install vim
 ${install} --owner=james --group=james vimrc /home/james/.vimrc
 
-# [last]
-# firewalld config
 apt-get install firewalld
 firewall-cmd --permanent --add-service=dns
 firewall-cmd --permanent --add-service=http
